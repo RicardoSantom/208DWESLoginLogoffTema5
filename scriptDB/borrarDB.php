@@ -31,8 +31,8 @@
                 require_once '../conf/confDB.php';
                 try {
                     //Establecimiento de la conexión 
-                    $miDB = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-                    $borrado = $miDB->prepare(<<<SQL
+                    $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+                    $borrado = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
                     drop table if exists T02_Departamento,T01_Usuario;
                     SQL);
                     $borrado->execute(); //Ejecuto la consulta

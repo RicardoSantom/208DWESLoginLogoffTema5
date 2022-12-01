@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Ricardo Santiago Tomé RicardoSantom en Github <https://github.com/RicardoSantom>
  * @version 1.0

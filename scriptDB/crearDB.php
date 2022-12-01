@@ -31,8 +31,8 @@
                 require_once '../conf/confDB.php';
                 try {
                     //Establecimiento de la conexión 
-                    $miDB = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-                    $creacion = $miDB->prepare(<<<SQL
+                    $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+                    $creacion = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
                     create table if not exists T02_Departamento(
                     T02_CodDepartamento varchar(3) primary key not null,
                     T02_DescDepartamento varchar(255) not null,

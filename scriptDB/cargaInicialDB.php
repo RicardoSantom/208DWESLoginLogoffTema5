@@ -31,8 +31,8 @@
                 require_once '../conf/confDB.php';
                 try {
                     //Establecimiento de la conexión 
-                    $miDB = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-                    $insercion = $miDB->prepare(<<<SQL
+                    $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+                    $insercion = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
                 insert into T02_Departamento values
                 ("INF","Departamento de Informatica",now(),3500.5,null),
                 ("FOL","Departamento de FOL",now(),1500.5,null),
@@ -42,7 +42,7 @@
                     $insercion->execute(); //Ejecuto la consulta
                     if ($insercion) {
                         echo "<h3>Insercion ejecutada con exito</<h3>";
-                        $resultadoDepartamentos = $miDB->query("select * from T02_Departamento");
+                        $resultadoDepartamentos = $DB208DWESLoginLogoffTema5->query("select * from T02_Departamento");
                     }
                 } catch (PDOException $excepcion) { //Código que se ejecutará si se produce alguna excepción
                     //Almacenamos el código del error de la excepción en la variable $errorExcepcion

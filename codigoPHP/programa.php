@@ -4,6 +4,7 @@ if (isset($_REQUEST['detalle'])) {
     exit;
 }
 if (isset($_REQUEST['salir'])) {
+    session_destroy();
     header('Location: login.php');
     exit;
 }
@@ -31,10 +32,10 @@ if (isset($_REQUEST['salir'])) {
         <main>
             <article>
                 <h3>Enunciado: Programa</h3>
-                    <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                        <input type="submit" id="detalle" value="Detalle" name="detalle">
-                        <input type="submit" id="salir" value="Salir" name="salir">
-                    </form>
+                <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <input type="submit" id="detalle" value="Detalle" name="detalle">
+                    <input type="submit" id="salir" value="Salir" name="salir">
+                </form>
             </article>
         </main>
         <footer>
