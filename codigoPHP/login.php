@@ -9,10 +9,10 @@ define("MAX_TAMANYO", 8);
 define("MIN_TAMANYO", 4);
 define("OBLIGATORIO", 1);
 //Array de respuestas para guardar los valores de los input.
-$aRespuestas = [
-    'usuario' => "",
-    'password' => ""
-];
+/* $aRespuestas = [
+  'usuario' => "",
+  'password' => ""
+  ]; */
 //Array de errores para guardar los valores de los input.
 $aErrores = [
     'usuario' => "",
@@ -29,7 +29,7 @@ try {
     if (isset($_REQUEST['iniciarSesion'])) {
         //Crear un objeto PDO pasándole las constantes definidas como parametros.
         $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'],MAX_TAMANYO, OBLIGATORIO);
+        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], MAX_TAMANYO, OBLIGATORIO);
         $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 255, OBLIGATORIO);
         $queryConsultaPorCodigo = $DB208DWESLoginLogoffTema5->prepare($sQuerySeleccion);
         $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
@@ -37,7 +37,7 @@ try {
         $oUsuario = $queryConsultaPorCodigo->fetchObject();
         //Comprobación de contraseña correcta
         if (!$oUsuario || $oUsuario->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
-            $entradaOk = false;
+            $entradaOK = false;
             foreach ($aErrores as $claveError => $mensajeError) {
                 if ($mensajeError != null) {
                     $entradaOk = false;
@@ -48,7 +48,7 @@ try {
         }
 //   
     } else {
-        $entradaOk = false;
+        $entradaOK = false;
     }
 } catch (PDOException $excepcion) {
     echo 'Error: ' . $excepcion->getMessage() . "<br>";
@@ -60,6 +60,7 @@ if ($entradaOK) {
     session_start();
     $_SESSION['usuarioDAW208LoginLogoffTema5'] = $_REQUEST['usuario'];
     header('Location: ./programa.php');
+    session_destroy();
     die();
 } else {
     ?>
