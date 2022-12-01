@@ -1,11 +1,7 @@
-/* 
-    Created on : 23 oct 2022, 19:49:56
-    Author     : Richard https://github.com/RicardoSantom en Github
-*/
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
 }
 html,body{
@@ -14,99 +10,81 @@ html,body{
 }
 body{
     background-color: #fbfaf8;
-
 }
 main{
-    position: relative;
-    padding-bottom: 3em;
-    width: 100%;
+    padding-bottom: 6em;
 }
-article{
-    width: 99%;
-    margin-left: 5px;
-    z-index: 1;
+article h3,article h4{
+    width: 60%;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 20%;
 }
-header{
+.headerPropio{
     height: 6em;
     position: sticky;
     top: 0px;
-    background-color: #AFBACC;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     z-index: 2;
 }
-h1{
+.headerPropio h1{
     text-align: center;
     background-color: #AFBACC;
     color: #516D99;
     line-height: 1.95em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    top: 0;
     text-shadow: 2px 2px 2px #333;
 }
-h2{
-    text-align: center;
-    background-color: #CCB3AF;
-    color: #516D99;
-    line-height: 1.5em;
-    text-shadow: 2px 2px 2px white;
-    width: 100%;
-}
-h3{
-    text-align: center;
-    font-variant-caps: all-small-caps;
-    color: #00006A;
-    margin: 1em 0;
-    width: 100%;
-}
-h4,h5{
-    margin: 1em 0 1em 1em;
-    color: #00006A;
-    text-decoration: underline solid  #00006A;
-}
-article p{
-    margin-left: 2em;
-}
-#detalle{
+#volverPrograma{
     background-color:lightgreen;
     position: absolute;
     left: 16%;
     height: 3rem;
     width: 5rem;
 }
-#detalle:hover{
-    box-shadow: 2px 2px 2px 2px gray;
+#volverPrograma:hover{
+     box-shadow: 2px 2px 2px 2px gray;
 }
-#salir{
-    background-color:red;
-    position: absolute;
-    left: 16%;
-    height: 3rem;
-    width: 5rem;
-}
-#salir:hover{
-    box-shadow: 2px 2px 2px 2px gray;
-}
-fieldset{
+h1{
+    text-align: center;
     margin: 0 auto;
-    background-color: activecaption;
 }
-hr {
-    background-color: transparent;
-    margin-bottom: 4px!important;
-    border-bottom-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top: 3px solid #FFC9B5;
-    display: block;
-    height: 1px;
-    line-height: 19px;
-    margin-bottom: 14px;
-    margin-top: 15px;
-    width: 90%;
+h2{
+    text-align: center;
+    margin: 0 auto;
 }
-table{
-    width: 99%;
+.headerPropio h2{
+    text-align: center;
+    background-color: #CCB3AF;
+    color: #516D99;
+    line-height: 1.5em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 2px white;
+}
+h3{
+    text-align: center;
+    font-variant-caps: all-small-caps;
+    color: #00006A;
+    margin: 1em 0;
+}
+h4,h5{
+    margin: 1em 0 1em 1em;
+    color: #00006A;
+    text-decoration: underline solid  #00006A;
+}
+tablaGlobales{
+    width: 97%;
     border-collapse: collapse;
     text-align: center;
     color: #516D99;
-    margin: 0.5rem;
+    margin: 0 auto;
     box-shadow: 12px 8px 2px 2px #516D99;
     border: groove;
 }
@@ -129,9 +107,8 @@ td:first-child{
 }
 td,th{
     border: 2px #666666 solid;
-    min-height: 2em;
+    height: 2em;
     font-weight: bold;
-    padding: 3px 5px;
 }
 td a{
     color: #666666;
@@ -139,9 +116,6 @@ td a{
 td a:hover{
     color: #666666;
     color: #FFC9B5;
-}
-#github,#linkedin,#curriculum{
-    text-decoration: none;
 }
 #github:before{
     font-family: 'Fontawesome';
@@ -175,14 +149,15 @@ td a:hover{
     padding-left: 0.75em;
 }
 #github,#linkedin{
+    padding-left: 2em;
     padding-top: 10px;
 }
 #github,#linkedin,#curriculum{
     padding-bottom: 10px;
+    background-color: inherit;
 }
 footer p{
     padding-top: 15px;
-    margin-left: 3rem;
 }
 footer{
     min-height: 50px;
@@ -198,6 +173,7 @@ footer{
     margin-right: auto;
     text-align: center;
     background-color: #516D99;
+    z-index: 2;
     justify-content: center;
     color:#F5FEFF;
     background: rgb(2,0,40);
@@ -205,6 +181,10 @@ footer{
 }
 #enlacePrincipal,#enlaceSecundario{
     color: #fbfaf8;
-    margin-left: 2em;
     margin-top: 1em;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#enlaceSecundario{
+    margin-left: 2em;
 }

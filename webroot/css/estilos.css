@@ -42,6 +42,35 @@ h2{
     line-height: 1.5em;
     text-shadow: 2px 2px 2px white;
 }
+#detalle,#iniciarSesion{
+    background-color:lightgreen;
+    position: absolute;
+    left: 10%;
+    height: 3rem;
+    width: 6rem;
+}
+fieldset{
+    margin: 0 auto;
+    background-color: #AFBACC;
+    height: 9rem;
+    width: 8rem;
+}
+fieldset *{
+    line-height: 2rem;
+}
+#detalle:hover,#iniciarSesion:hover{
+    box-shadow: 2px 2px 2px 2px gray;
+}
+#salir{
+    background-color:red;
+    position: absolute;
+    left: 16%;
+    height: 3rem;
+    width: 5rem;
+}
+#salir:hover{
+    box-shadow: 2px 2px 2px 2px gray;
+}
 table{
     width: 99%;
     border-collapse: collapse;

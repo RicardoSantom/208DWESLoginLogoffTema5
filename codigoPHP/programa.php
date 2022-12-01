@@ -16,7 +16,8 @@ if (isset($_REQUEST['salir'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
         <meta name="author" content="Ricardo Santiago Tomé">
-        <link rel="stylesheet" href="../webroot/css/estilosPlantilla.css"/>
+        <link rel="stylesheet" href="../webroot/css/estilos.css"/>
+        <link href="../webroot/css/estilosPlantilla.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/png" sizes="96x96" href="../../webroot/images/favicon-96x96.png">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,14 +32,8 @@ if (isset($_REQUEST['salir'])) {
             <article>
                 <h3>Enunciado: Programa</h3>
                     <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                        <table class="formulario">
-                            <tr>
-                                <td colspan="2"><input type="submit" id="detalle" value="Detalle" name="detalle"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><input type="submit" id="salir" value="Salir" name="salir"></td>
-                            </tr>
-                        </table>
+                        <input type="submit" id="detalle" value="Detalle" name="detalle">
+                        <input type="submit" id="salir" value="Salir" name="salir">
                     </form>
             </article>
         </main>
