@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author David Aparicio Sir davidas02 en GitHub <https://github.com/davidas02>, Ricardo Santiago Tomé RicardoSantom en GitHub<https://github.com/RicardoSantom>
+ * @version 1.0
+ * @since 02/12/2022
+ * Description Control de acceso en función header() a una aplicación.
+ */
 //Inclusión librería validación y fichero configuración base de datos.
 require_once '../core/validacionFormularios.php';
 require_once '../config/confDB.php';
@@ -8,6 +14,7 @@ $entradaOK = true;
 define("MAX_TAMANYO", 8);
 define("MIN_TAMANYO", 4);
 define("OBLIGATORIO", 1);
+define("OPCIONAL",0);
 //Array de respuestas para guardar los valores de los input.
 /* $aRespuestas = [
   'usuario' => "",
@@ -21,32 +28,34 @@ $aErrores = [
 $sQuerySeleccion = <<< query
     SELECT * FROM T01_Usuario WHERE T01_CodUsuario=:codUsuario;
 query;
-$sQueryActualizacion = <<< query
-    UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() WHERE T01_CodUsuario=:codUsuario;
-query;
+//Comentado para posterior trabajo con fecha y hora de última conexión.
+/* $sQueryActualizacion = <<< query
+  UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() WHERE T01_CodUsuario=:codUsuario;
+  query;
+  $ultimaConexion = null; */
+
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['iniciarSesion'])) {
         //Crear un objeto PDO pasándole las constantes definidas como parametros.
         $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], MAX_TAMANYO, OBLIGATORIO);
-        $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 255, OBLIGATORIO);
-        $queryConsultaPorCodigo = $DB208DWESLoginLogoffTema5->prepare($sQuerySeleccion);
-        $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
-        $queryConsultaPorCodigo->execute();
-        $oUsuario = $queryConsultaPorCodigo->fetchObject();
-        //Comprobación de contraseña correcta
-        if (!$oUsuario || $oUsuario->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
-            $entradaOK = false;
-            foreach ($aErrores as $claveError => $mensajeError) {
-                if ($mensajeError != null) {
-                    $entradaOk = false;
-                }
-            };
-        } else {
-            //Actualizacion posterior
+        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], MAX_TAMANYO,MIN_TAMANYO, OBLIGATORIO);
+        $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'],MAX_TAMANYO, MIN_TAMANYO, OBLIGATORIO);
+        foreach ($aErrores as $claveError => $mensajeError) {
+            if ($mensajeError != null) {
+                $entradaOK = false;
+            }
         }
-//   
+        if ($entradaOK) {
+            $queryConsultaPorCodigo = $DB208DWESLoginLogoffTema5->prepare($sQuerySeleccion);
+            $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
+            $queryConsultaPorCodigo->execute();
+            $oUsuario = $queryConsultaPorCodigo->fetchObject();
+            //Comprobación de contraseña correcta o incorrecta
+            if (!$oUsuario || $oUsuario->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
+                $entradaOK = false;
+            }
+        }
     } else {
         $entradaOK = false;
     }
@@ -57,10 +66,26 @@ try {
     unset($DB208DWESLoginLogoffTema5);
 }
 if ($entradaOK) {
+    try {
+        //Comentado para posterior trabajo con fecha y hora e última conexión.
+        /* $ultimaConexion=$oUsuario->T01_FechaHoraUltimaConexion;
+          $_SESSION['UltimaConexionDAW201AppLoginLogoff'] = $ultimaConexion;
+          $queryActualizacion = $DB208DWESLoginLogoffTema5->prepare($actualizacionConexiones); */
+        $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+        $queryActualizacion->bindParam(":codUsuario", $oUsuario->T01_CodUsuario);
+        $queryActualizacion->execute();
+        $queryConsultaPorCodigo = $DB208DWESLoginLogoffTema5->prepare($buscaUsuarioPorCodigo);
+        $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
+        $queryConsultaPorCodigo->execute();
+        $oUsuario = $queryConsultaPorCodigo->fetchObject();
+    } catch (PDOException $excepcion) {
+        echo $excepcion->getMessage();
+    } finally {
+        unset($DB208DWESLoginLogoffTema5);
+    }
     session_start();
     $_SESSION['usuarioDAW208LoginLogoffTema5'] = $_REQUEST['usuario'];
     header('Location: ./programa.php');
-    session_destroy();
     die();
 } else {
     ?>

@@ -8,26 +8,13 @@
  */
 //Conexión en curso.
 
-define('DSN', 'mysql:host=192.168.20.19;dbname=DB208DWESLoginLogoffTema5');
+define('DSN', 'mysql:host=daw208.sauces.local;dbname=DB208DWESLoginLogoffTema5');
 define('NOMBREUSUARIO', 'user208DWESLoginLogoffTema5');
  define('PASSWORD', 'paso');
 /*
  * Declaración de variables para desarrollo sauces.local proyectoTema5
  * define('DSN', 'mysql:host=192.168.20.19;dbname=DB208DWESLoginLogoffTema5');
  * define('NOMBREUSUARIO', 'user208DWESLoginLogoffTema5');
- * define('PASSWORD', 'paso');
- */
-/*
- * Declaración de variables para desarrollo Ubuntu server casa proyectoTema5
- * define('DSN', 'mysql:host=192.168.1.77;dbname=DB208DWESProyectoTema5');
- * define('NOMBREUSUARIO', 'user208DWESProyectoTema5');
- * define('PASSWORD', 'paso');
- */
-/*
- * Declaración de variables e inicialización con los valores correctos 
- * para entorno de desarrollo virtualizado Ubuntu server en clase.
- * define('DSN', 'mysql:host=192.168.3.207;dbname=DAW208DBDepartamentos');
- * define('NOMBREUSUARIO', 'usuarioDAW208DBDepartamentos');
  * define('PASSWORD', 'paso');
  */
 /*
