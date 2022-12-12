@@ -61,17 +61,17 @@ try {
 }
 if ($entradaOK) {
     //Iniciamos la sesión
-    session_start();    
+    session_start();
     /* Introducimos el usuario en la sesion dándole valor a la superglobal $_SESSION. Esta superglobal
      * será utilizada en los siguientes archivos PHP para comprobar si el usuario tenía sesión abierta, es decir,
      * se ha logado corréctamente. */
     $_SESSION['usuario208DWESLoginLogoffTema5'] = $oUsuario;
-    /*Al tener la base de datos el campo FechaHoraUltimaConexion como timestamp, tengo que comprobar que,
-     *si no es nulo, construya un objeto datetime con la fecha actual,y... */
-  if (!is_null($oUsuario->T01_FechaHoraUltimaConexion)) {
+    /* Al tener la base de datos el campo FechaHoraUltimaConexion como timestamp, tengo que comprobar que,
+     * si no es nulo, construya un objeto datetime con la fecha actual,y... */
+    if (!is_null($oUsuario->T01_FechaHoraUltimaConexion)) {
         $oFechaTimesTamp = new DateTime();
-        /*... le establezco la fecha con el valor devuelto al objeto $oUsuario al ejecutar la consulta por codigo
-         *y hacer fetchObject sobre el.          */
+        /* ... le establezco la fecha con el valor devuelto al objeto $oUsuario al ejecutar la consulta por codigo
+         * y hacer fetchObject sobre el.          */
         $oFechaTimesTamp->setTimestamp($oUsuario->T01_FechaHoraUltimaConexion);
         //Y se guarda en el $_SESSION el valor de la fecha de su última conexió ya formateado
         $_SESSION['FechaHoraUltimaConexionAnterior'] = $oFechaTimesTamp->format('d/m/Y H:i:s T');

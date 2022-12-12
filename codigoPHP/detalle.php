@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_REQUEST['volverPrograma'])) {
     header('Location: programa.php');
     exit;
@@ -33,15 +34,16 @@ if (isset($_REQUEST['volverPrograma'])) {
                 <h3>Enunciado: Detalle</h3>
                 <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <input type="submit" id="volverPrograma" value="Volver" name="volverPrograma">
-                            </tr>
-                        </table>
-                    </form>
+                    </tr>
+                    </table>
+                </form>
                 <?php
                 /**
                  * @author Ricardo Santiago Tomé - RicardoSantom en Github https://github.com/RicardoSantom
                  * @version 1.0
                  * @since 28/10/2022
                  */
+
                 /**
                  * Esta función recibe dos parámetros, con ellos construye una tabla, evalua si el primer parámetro recibido
                  * es null o está vacío; en caso de que así sea, devuelve un mensaje impreso por pantalla declarando que
@@ -58,8 +60,31 @@ if (isset($_REQUEST['volverPrograma'])) {
                  * @param string $sNombreVariableSuperGlobal nombre de la variable superglobal abriendo comillas seguidas por la secuencia
                  * de escape \ y a continuación el identificador de la variable supeglobal y para finalizar, cerramos con comillas.
                  */
+                if (!empty($_SESSION)) {
+                    echo "<table><caption>\$_SESSION'</caption><tr><th>Clave</th><th>Valor</th></tr>";
+                    foreach ($_SESSION as $clave => $valor) {
+                        echo "<tr>";
+                        echo "<td><strong>$clave</strong></td>";
+                        if (is_object($valor)) {
+                            echo '<td><table><th>Clave</th><th>valor</th>';
+                            foreach ($valor as $c => $v) {
+                                echo "<tr><th>$c</th>";
+                                echo "<td>$v</td></tr>";
+                            }
+                            echo"</table></td>";
+                        } else {
+                            echo "<td>" . $valor . "</td>";
+                        }
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+
+                    echo "</br>";
+                } else {
+                    printf('<h3>La variable superglobal $_SESSION está vacía</h3>');
+                }
                 function imprimirTablaVariablesSuperGlobales($aVariableSuperglobal, $sNombreVariableSuperGlobal) {
-                    
+
                     printf('<table class="tablaGlobales"><caption>%s</caption>', $sNombreVariableSuperGlobal);
                     if (is_null($aVariableSuperglobal) || empty($aVariableSuperglobal)) {
                         printf('<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal %s está vacía</th></thead>', $sNombreVariableSuperGlobal);
@@ -100,11 +125,7 @@ if (isset($_REQUEST['volverPrograma'])) {
                     }
                 }
 
-                if (!empty($_SESSION)) {
-                    imprimirTablaVariablesSuperGlobales($_SESSION, "\$_SESSION");
-                } else {
-                    printf('<h3>La variable superglobal $_SESSION está vacía</h3>');
-                }
+                
                 imprimirTablaVariablesSuperGlobales($_COOKIE, "\$_COOKIE");
                 imprimirTablaVariablesSuperGlobales($_SERVER, "\$_SERVER");
                 imprimirTablaVariablesSuperGlobales($_REQUEST, "\$_REQUEST");
@@ -112,7 +133,8 @@ if (isset($_REQUEST['volverPrograma'])) {
                 imprimirTablaVariablesSuperGlobales($_FILES, "\$_FILES");
                 imprimirTablaVariablesSuperGlobales($_ENV, "\$_ENV");
                 imprimirTablaVariablesSuperGlobales($_POST, "\$_POST");
-                imprimirTablaVariablesSuperGlobales($_GET, "\$_GET");?>
+                imprimirTablaVariablesSuperGlobales($_GET, "\$_GET");
+                ?>
                 <?php phpinfo();
                 ?>
             </article>
@@ -123,7 +145,7 @@ if (isset($_REQUEST['volverPrograma'])) {
             </a>
             <a href="https://www.linkedin.com/in/ricardo-santiago-tom%C3%A9/" id="linkedin" title="Ricardo Santiago Tomé en Linkedim" target="_blank"></a>
             <a href="../../doc/curriculumRicardo.pdf" class="material-icons" title="Curriculum Vitae Ricardo Santiago Tomé" target="_blank" id="curriculum"><span class="material-icons md-18">face</span></a>
-           <a href="../../208DWESproyectoDWES/index.php" id="enlaceSecundario" title="Enlace a Index DWES">Index DWES</a>
+            <a href="../../208DWESproyectoDWES/index.php" id="enlaceSecundario" title="Enlace a Index DWES">Index DWES</a>
         </footer>
     </body>
 </html>
