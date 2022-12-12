@@ -20,13 +20,13 @@ create table if not exists T01_Usuario(
     T01_Password varchar(255) not null,
     T01_DescUsuario varchar(255) not null,
     T01_NumConexiones int not null default 1,
-    T01_FechaHoraUltimaConexion datetime not null,
+    T01_FechaHoraUltimaConexion int not null,
     T01_Perfil enum('administrador','usuario') default 'usuario',
     T01_ImagenUsuario MEDIUMBLOB null
 )engine=Innodb;
 /*Creación usuario para conectarse desde cualquier ip y adjudicación de password*/
-create user if not exists 'user208DWESLoginLogoffTema5'@'%' identified by 'paso';
+create user if not exists 'usuario208DWESLoginLogoffTema5'@'%' identified by 'paso';
 /*Dotación de todos los privilegios para el usuario crado en esta base de datos*/
-grant all on DB208DWESLoginLogoffTema5.* to 'user208DWESLoginLogoffTema5'@'%';
+grant all on DB208DWESLoginLogoffTema5.* to 'usuario208DWESLoginLogoffTema5'@'%';
 /*Recarga de privilegios*/
 FLUSH PRIVILEGES;

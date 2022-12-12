@@ -1,10 +1,32 @@
 <?php
-if (isset($_REQUEST['detalle'])) {
-    header('Location: detalle.php');
+/**
+ * @author Ricardo Santiago Tomé RicardoSantom en GitHub<https://github.com/RicardoSantom>
+ * @version 1.0
+ * @since 02/12/2022
+ * Description Control de acceso en función header() a una aplicación.
+ */
+//Inicio de sesión
+session_start();
+/* Con la superglobal $_SESSION compruebo si tiene un valor nulo, es decir,
+ * el usuario no se la logado o lo ha hecho incorréctamente, en tal caso, 
+ * lo redirijo a login.php
+ */
+if (is_null($_SESSION['usuario208DWESLoginLogoffTema5'])) {
+    header('Location: login.php');
     exit;
 }
+/* El usuario tiene un botón de salir, en caso de pulsarlo, borro los datos de la superglobal
+ * $_SESSION, destruyo la session previamente iniciada y lo redirijo a login.php  */
 if (isset($_REQUEST['salir'])) {
+    $_SESSION['usuario208DWESLoginLogoffTema5'] = null;
+    $_SESSION['FechaHoraUltimaConexionAnterior'] = null;
+    session_destroy();
     header('Location: login.php');
+    exit;
+}
+//Si el usuario pulsa el botón de detalle, redirijo a detalle.php
+if (isset($_REQUEST['detalle'])) {
+    header('Location: detalle.php');
     exit;
 }
 ?>
@@ -22,6 +44,9 @@ if (isset($_REQUEST['salir'])) {
         <link rel="icon" type="image/png" sizes="96x96" href="../../webroot/images/favicon-96x96.png">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>LoginLogoff programa.php</title>
+        <style>
+            main{text-align: center;}
+        </style>
     </head>
     <body>
         <header>
@@ -30,10 +55,38 @@ if (isset($_REQUEST['salir'])) {
         </header>
         <main>
             <article>
-                <h3>Enunciado: Programa</h3>
+                <h3>Enunciado: Login Correcto, bienvenida a usuario e información.</h3>
                 <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input type="submit" id="detalle" value="Detalle" name="detalle">
-                    <input type="submit" id="salir" value="Salir" name="salir">
+                        <?php
+                        //Damos la bienvenida al usuario haciendo uso de la cookie y el valor en ella recojido para idioma
+                        switch ($_COOKIE['idioma']) {
+                            case "español":
+                                echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                break;
+                            case "portugues":
+                                echo"<h5>Bem-vido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                break;
+                            case "britanico":
+                                echo"<h5>Welcome " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                break;
+                            default:
+                                echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                break;
+                        }
+                        //comprobamos el numero de conexiones si es mayor a 1 tambien mostramos la fecha y hora de la ultima conexion
+                        if ($_SESSION['usuario208DWESLoginLogoffTema5']->T01_NumConexiones > 1) {
+                            echo"<p>Ultimo inicio de sesión: " . $_SESSION['FechaHoraUltimaConexionAnterior'] . "</p>";
+                            echo"<p>Te has conectado " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_NumConexiones . " veces</p>";
+                        } else {
+                            echo '<p>Es la primera vez que te conectas</p><br>';
+                        }
+                        $oFechaActual = new DateTime('now', new DateTimeZone("Europe/Madrid"));
+                        $sFechaFormateada = $oFechaActual -> format('d-m-Y H:i:s');
+                        echo "<p> Fecha y hora actuales en Madrid(España) ".$sFechaFormateada;
+                        ?>
+                        </p><br>
+                        <div class="botones"><input type="submit" id="detalle" value="Detalle" name="detalle"></div>
+                        <div class="botones2"><input type="submit" id="salir" value="Salir" name="salir"></div>                 
                 </form>
             </article>
         </main>

@@ -8,8 +8,8 @@
  */
 //Conexión en curso.
 
-define('DSN', 'mysql:host=daw208.sauces.local;dbname=DB208DWESLoginLogoffTema5');
-define('NOMBREUSUARIO', 'user208DWESLoginLogoffTema5');
+define('DSN', 'mysql:host=192.168.1.77;dbname=DB208DWESLoginLogoffTema5');
+define('NOMBREUSUARIO', 'usuario208DWESLoginLogoffTema5');
  define('PASSWORD', 'paso');
 /*
  * Declaración de variables para desarrollo sauces.local proyectoTema5
