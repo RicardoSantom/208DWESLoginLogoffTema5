@@ -8,9 +8,9 @@
  * constantes con valores para conexión a base de datos
  */
 //Conexión Ubuntu server casa.
-define('DSN', 'mysql:host=192.168.1.77;dbname=DAW208DBDepartamentos');
-define('NOMBREUSUARIO', 'usuarioDAW208DBDepartamentos');
-define('PASSWORD', 'paso');
+define('DSN', 'mysql:host=db5010845912.hosting-data.io; dbname=dbs9174079;');
+define('NOMBREUSUARIO', 'dbu1353928');
+define('PASSWORD', 'daw2_Sauces');
 
 /*
  * Declaración de variables e inicialización con los valores correctos 

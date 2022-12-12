@@ -28,16 +28,24 @@
                 <h3>Scripts de carga inicial entorno de explotación</h3>
                 <?php
                 require_once '../core/validacionFormularios.php';
-                require_once '../conf/confDB.php';
+                require_once '../config/confDB.php';
                 try {
                     //Establecimiento de la conexión 
                     $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
                     $insercion = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
-                insert into T02_Departamento values
-                ("INF","Departamento de Informatica",now(),3500.5,null),
-                ("FOL","Departamento de FOL",now(),1500.5,null),
-                ("LEN","Departamento de Lengua",now(),500.12,null),
-                ("MAT","Departamento de Matemáticas",now(),1600.6,null);
+                    insert into T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_FechaHoraUltimaConexion) values
+                    ('heraclio',sha2(concat('heraclio','paso'),256),'Heraclio', UNIX_TIMESTAMP()),
+                    ('alberto',sha2(concat('alberto','paso'),256),'Alberto', UNIX_TIMESTAMP()),
+                    ('amor',sha2(concat('amor','paso'),256),'Amor', UNIX_TIMESTAMP()),
+                    ('antonio',sha2(concat('antonio','paso'),256),'Antonio', UNIX_TIMESTAMP()),
+                    ('carmen',sha2(concat('carmen','paso'),256),'Carmen', UNIX_TIMESTAMP()),
+                    ('ricardo',sha2(concat('ricardo','paso'),256),'Ricardo', UNIX_TIMESTAMP()),
+                    ('david',sha2(concat('david','paso'),256),'David', UNIX_TIMESTAMP()),
+                    ('luis',sha2(concat('luis','paso'),256),'Luis', UNIX_TIMESTAMP()),
+                    ('otalvaro',sha2(concat('otalvaro','paso'),256),'Alejandro', UNIX_TIMESTAMP()),
+                    ('josue',sha2(concat('josue','paso'),256),'Josue', UNIX_TIMESTAMP()),
+                    ('manuel',sha2(concat('manuel','paso'),256),'Manuel', UNIX_TIMESTAMP()),
+                    ('admin',sha2(concat('admin','paso'),256),'Administrador', UNIX_TIMESTAMP());
                 SQL);
                     $insercion->execute(); //Ejecuto la consulta
                     if ($insercion) {
@@ -54,7 +62,7 @@
                     echo "<span style='color: red;'>Código del error: </span>" . $errorExcep; //Mostramos el código de la excepción
                 } finally {
                     // Cierre de la conexión.
-                    unset($mydb);
+                    unset($DB208DWESLoginLogoffTema5);
                 }
                 ?>
                 <a href="../indexProyectoTema4.php"><img src="../webroot/volver.png" alt="volver" class="volver2" /></a>

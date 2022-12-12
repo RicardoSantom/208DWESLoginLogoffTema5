@@ -28,28 +28,21 @@
                 <h3>Scripts de creación entorno de explotación</h3>
                 <?php
                 require_once '../core/validacionFormularios.php';
-                require_once '../conf/confDB.php';
+                require_once '../config/confDB.php';
                 try {
                     //Establecimiento de la conexión 
                     $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
                     $creacion = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
-                    create table if not exists T02_Departamento(
-                    T02_CodDepartamento varchar(3) primary key not null,
-                    T02_DescDepartamento varchar(255) not null,
-                    T02_FechaCreacionDepartamento datetime not null,
-                    T02_VolumenDeNegocio float not null,
-                    T02_FechaBajaDepartamento int null
+                      create table if not exists T01_Usuario(
+                        T01_CodUsuario varchar(8) primary key not null,
+                        T01_Password varchar(255) not null,
+                        T01_DescUsuario varchar(255) not null,
+                        T01_NumConexiones int not null default 1,
+                        T01_FechaHoraUltimaConexion int not null,
+                        T01_Perfil enum('administrador','usuario') default 'usuario',
+                        T01_ImagenUsuario MEDIUMBLOB null
                     )engine=Innodb;
-                            create table if not exists T01_Usuario(
-    T01_CodUsuario varchar(8) primary key not null,
-    T01_Password varchar(255) not null,
-    T01_DescUsuario varchar(255) not null,
-    T01_NumConexiones int not null default 1,
-    T01_FechaHoraUltimaConexion datetime not null,
-    T01_Perfil enum('administrador','usuario') default 'usuario',
-    T01_ImagenUsuario MEDIUMBLOB null
-)engine=Innodb;
-                SQL);
+                            SQL);
                     $creacion->execute(); //Ejecuto la consulta
                     if ($creacion) {
                         echo "<h3>Creacion ejecutada con exito</<h3>";

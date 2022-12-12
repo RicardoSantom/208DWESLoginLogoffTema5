@@ -28,7 +28,7 @@
                 <h3>Scripts de borrado entorno de explotación</h3>
                 <?php
                 require_once '../core/validacionFormularios.php';
-                require_once '../conf/confDB.php';
+                require_once '../config/confDB.php';
                 try {
                     //Establecimiento de la conexión 
                     $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
@@ -48,10 +48,10 @@
                     echo "<span style='color: red;'>Código del error: </span>" . $errorExcep; //Mostramos el código de la excepción
                 } finally {
                     // Cierre de la conexión.
-                    unset($mydb);
+                    unset($DB208DWESLoginLogoffTema5);
                 }
                 ?>
-                <a href="../indexProyectoTema4.php"><img src="../webroot/volver.png" alt="volver" class="volver2" /></a>
+                <a href="../indexProyectoTema4.php">VOLVER</a>
             </article>
         </main>
         <footer>
