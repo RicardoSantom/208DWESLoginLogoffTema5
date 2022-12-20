@@ -1,0 +1,149 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+}
+body{
+    height: 100%;
+    background-color: #fbfaf8;
+}
+header{
+    height: 6em;
+    position: sticky;
+    top: 0px;
+    font-variant-caps: small-caps;
+}
+h1{
+    text-align: center;
+    background-color: #AFBACC;
+    color: #516D99;
+    line-height: 1.95em;
+    text-shadow: 2px 2px 2px #333;
+}
+h2{
+    text-align: center;
+    background-color: #CCB3AF;
+    color: #516D99;
+    line-height: 1.75em;
+    text-shadow: 2px 2px 2px white;
+}
+#primero{
+    display: grid;
+    position: absolute;
+    left: 27.5%;
+    vertical-align: middle;
+}
+#div-enlaces{
+    width: 75%;
+    position: relative;
+    display: flex;
+    top: 20%;
+}
+hr {
+    background-color: #FFC9B5;
+    background: rgb(2,0,40);
+    background: linear-gradient(90deg, rgba(2,0,40,1) 0%, rgba(81,109,153,1) 100%, rgba(251,250,248,1) 100%);
+    margin-bottom: 4px!important;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top: 3px solid #FFC9B5;
+    display: block;
+    height: 6px;
+    line-height: 39px;
+    width: 90%;
+    margin-left: 15px;
+    box-shadow:1px 1px 8px #333;
+    border-radius: 25%;
+}
+ul{
+    position: relative;
+    float: right;
+    margin-left: 1em;
+}
+ul li{
+    text-decoration: none;
+    list-style: none;
+    font-size: 30px;
+    color: #516D99;
+    border: 1px #666666 solid;
+    border-radius: 3%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: 1em;
+    line-height: 2.5em;
+    width: 20em;
+    text-shadow: 2px 2px 2px #333;
+    left: 5%;
+    display: inline-grid;
+}
+ul li:hover{
+    background: linear-gradient(to top, #ccc,#fff );
+    box-shadow: 4px 12px 16px 4px rgba(0,0,0,0.2);
+}
+.enlaces li a{
+    text-decoration: none;
+    margin-left: 0.5em;
+}
+#github,#linkedin,#curriculum{
+    text-decoration: none;
+}
+#github:before{
+    font-family: 'Fontawesome';
+    content:'\f09b';
+    background-color:#FFC9B5;
+    font-size: 2em;
+    border-radius: 50%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#linkedin:before{
+    color: #FFC9B5;
+    font-family: 'FontaWesome';
+    content: '\f08c';
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#curriculum:before{
+    color: #FFC9B5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#linkedin{
+    color: #FFC9B5;
+}
+#curriculum span{
+    color: #FFC9B5;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-left: 0.75em;
+}
+#github,#linkedin{
+    padding-left: 2em;
+    padding-top: 10px;
+}
+footer p{
+    padding-top: 15px;
+}
+footer{
+    height: 50px;
+    position:fixed;
+    display: flex;
+    float: left;
+    bottom: 0;
+    width: 100%;
+    margin-top:10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: #516D99;
+    z-index: 2;
+    justify-content: center;
+    color:#F5FEFF;
+    background: rgb(2,0,40);
+    background: linear-gradient(90deg, rgba(2,0,40,1) 0%, rgba(81,109,153,1) 100%, rgba(251,250,248,1) 100%);
+}
