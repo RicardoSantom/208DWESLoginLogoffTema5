@@ -1,4 +1,10 @@
 <?php
+//Navegación a registro.php
+if (isset($_REQUEST['registro'])) {
+    header('Location: registro.php');
+    exit;
+}
+
 /**
  * @author David Aparicio Sir davidas02 en GitHub <https://github.com/davidas02>, Ricardo Santiago Tomé RicardoSantom en GitHub<https://github.com/RicardoSantom>
  * @version 1.0
@@ -19,6 +25,25 @@ define("OPCIONAL", 0);
 $aErrores = [
     'usuario' => null,
     'password' => null
+];
+
+//Array para cambiar idioma del header.
+$aIdiomaHeader = [
+    'es' => [
+        'login' => 'Acceso a la aplicación',
+        'programa' => 'Proyecto Login-Logout',
+        'detalle' => 'Variables superglobales y phpinfo()'
+    ],
+    'en' => [
+        'login' => 'Application access',
+        'programa' => 'Login-Logout Project',
+        'detalle' => 'Superglobal variables and phpinfo()'
+    ],
+    'pt' => [
+        'login' => 'Acesso à aplicação',
+        'programa' => 'Projeto Login-Logout',
+        'detalle' => 'Variáveis superglobais e phpinfo()'
+    ],
 ];
 $sQuerySeleccion = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario=:codUsuario";
 $sQueryActualizacion = <<< query
@@ -99,8 +124,8 @@ if ($entradaOK) {
     }
     //Fecha actual
     $oFechaActual = new DateTime('now');
-    //A la que le añado 60 minutos
-    $oFechaDentroDeUnaHora = $oFechaActual->add(new DateInterval("PT60M"));
+    //A la que le añado 6 minutos
+    $oFechaDentroDeUnaHora = $oFechaActual->add(new DateInterval("PT6M"));
     //Y de esta última obtengo el timestamp
     $enteroFechaDentroDeUnaHora = $oFechaDentroDeUnaHora->getTimestamp();
     //Este timestamp se lo paso como tercer parámetro a la cookie para indicarle su periodo de validez.
@@ -115,7 +140,7 @@ if ($entradaOK) {
     //Si la entrada no ha sido correcta, imprimo por pantalla el formulario.
     ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="<?php echo $_COOKIE['idioma'] ?>">
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -132,7 +157,7 @@ if ($entradaOK) {
         <body>
             <header>
                 <h1>Aplicación LoginLogoffTema5</h1>
-                <h2>login.php</h2>
+                <h2><?php echo $aIdiomaHeader[$_COOKIE['idioma']]['login'] ?></h2>
             </header>
             <main>
                 <article>
@@ -145,11 +170,12 @@ if ($entradaOK) {
                             <input type="password" name="password" class="entradadatos" />
                             <p>Elija idioma:</p>
                             <select name="idioma" class="idioma">
-                                <option value="español">Español</option>
-                                <option value="portugues">Portugués</option>
-                                <option value="britanico">Inglés</option>
+                                <option value="es">Español</option>
+                                <option value="pt">Portugués</option>
+                                <option value="en">Inglés</option>
                             </select>
                             <div class="inicarSesion"><input type="submit" id="iniciarSesion" value="Iniciar Sesion" name="iniciarSesion"></div>
+                            <div class="inicarSesion"><input type="submit" id="navegarRegistro" value="Registrarse" name="registrarse"></div>
                         </fieldset>
                     </form>
                 </article>

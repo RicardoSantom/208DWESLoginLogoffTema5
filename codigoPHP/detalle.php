@@ -4,9 +4,27 @@ if (isset($_REQUEST['volverPrograma'])) {
     header('Location: programa.php');
     exit;
 }
+//Array para cambiar idioma del header.
+$aIdiomaHeader = [
+    'es' => [
+        'login' => 'Acceso a la aplicación',
+        'programa' => 'Proyecto Login-Logoff',
+        'detalle' => 'Variables superglobales y phpinfo()'
+    ],
+    'en' => [
+        'login' => 'Application access',
+        'programa' => 'Login-Logoff Project',
+        'detalle' => 'Superglobal variables and phpinfo()'
+    ],
+    'pt' => [
+        'login' => 'Acesso à aplicação',
+        'programa' => 'Projeto Login-Logoff',
+        'detalle' => 'Variáveis superglobais e phpinfo()'
+    ],
+];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $_COOKIE['idioma'] ?>">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

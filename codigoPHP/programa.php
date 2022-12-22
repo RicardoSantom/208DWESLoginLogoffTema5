@@ -29,9 +29,27 @@ if (isset($_REQUEST['detalle'])) {
     header('Location: detalle.php');
     exit;
 }
+//Array para cambiar idioma del header.
+$aIdiomaHeader = [
+    'es' => [
+        'login' => 'Acceso a la aplicación',
+        'programa' => 'Proyecto Login-Logout',
+        'detalle' => 'Variables superglobales y phpinfo()'
+    ],
+    'en' => [
+        'login' => 'Application access',
+        'programa' => 'Login-Logout Project',
+        'detalle' => 'Superglobal variables and phpinfo()'
+    ],
+    'pt' => [
+        'login' => 'Acesso à aplicação',
+        'programa' => 'Projeto Login-Logout',
+        'detalle' => 'Variáveis superglobais e phpinfo()'
+    ],
+];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $_COOKIE['idiomaPreferido'] ?>">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,14 +78,14 @@ if (isset($_REQUEST['detalle'])) {
                         <?php
                         //Damos la bienvenida al usuario haciendo uso de la cookie y el valor en ella recojido para idioma
                         switch ($_COOKIE['idioma']) {
-                            case "español":
+                            case "es":
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
                                 break;
-                            case "portugues":
-                                echo"<h5>Bem-vido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
-                                break;
-                            case "britanico":
+                            case "en":
                                 echo"<h5>Welcome " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                break;
+                            case "pt":
+                                echo"<h5>Bem-vido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
                                 break;
                             default:
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";

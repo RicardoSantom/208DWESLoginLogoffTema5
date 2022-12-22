@@ -8,9 +8,9 @@
  */
 //Conexión en curso.
 
-define('DSN', 'mysql:host=db5010845912.hosting-data.io; dbname=dbs9174079;');
-define('NOMBREUSUARIO','dbu1353928');
-define('PASSWORD','daw2_Sauces');
+define('DSN', 'mysql:host=192.168.1.77;dbname=DAW208DBDepartamentos');
+  define('NOMBREUSUARIO', 'usuarioDAW208DBDepartamentos');
+  define('PASSWORD', 'paso');
 /*
  * Declaración de variables para desarrollo sauces.local proyectoTema5
  * define('DSN', 'mysql:host=192.168.20.19;dbname=DB208DWESLoginLogoffTema5');
