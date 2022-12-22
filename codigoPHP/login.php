@@ -26,22 +26,22 @@ $aErrores = [
     'usuario' => null,
     'password' => null
 ];
-
+$idioma;
 //Array para cambiar idioma del header.
-$aIdiomaHeader = [
+$aIdiomaHTML = [
     'es' => [
         'login' => 'Acceso a la aplicación',
-        'programa' => 'Proyecto Login-Logout',
+        'programa' => 'Proyecto Login-Logoff',
         'detalle' => 'Variables superglobales y phpinfo()'
     ],
     'en' => [
         'login' => 'Application access',
-        'programa' => 'Login-Logout Project',
+        'programa' => 'Login-Logoff Project',
         'detalle' => 'Superglobal variables and phpinfo()'
     ],
     'pt' => [
         'login' => 'Acesso à aplicação',
-        'programa' => 'Projeto Login-Logout',
+        'programa' => 'Projeto Login-Logoff',
         'detalle' => 'Variáveis superglobais e phpinfo()'
     ],
 ];
@@ -157,7 +157,7 @@ if ($entradaOK) {
         <body>
             <header>
                 <h1>Aplicación LoginLogoffTema5</h1>
-                <h2><?php echo $aIdiomaHeader[$_COOKIE['idioma']]['login'] ?></h2>
+                <h2><?php echo $aIdiomaHTML[$_COOKIE['idioma']]['login'] ?></h2>
             </header>
             <main>
                 <article>

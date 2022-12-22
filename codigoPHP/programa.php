@@ -30,20 +30,20 @@ if (isset($_REQUEST['detalle'])) {
     exit;
 }
 //Array para cambiar idioma del header.
-$aIdiomaHeader = [
+$aIdiomaHTML = [
     'es' => [
         'login' => 'Acceso a la aplicación',
-        'programa' => 'Proyecto Login-Logout',
+        'programa' => 'Proyecto Login-Logoff',
         'detalle' => 'Variables superglobales y phpinfo()'
     ],
     'en' => [
         'login' => 'Application access',
-        'programa' => 'Login-Logout Project',
+        'programa' => 'Login-Logoff Project',
         'detalle' => 'Superglobal variables and phpinfo()'
     ],
     'pt' => [
         'login' => 'Acesso à aplicação',
-        'programa' => 'Projeto Login-Logout',
+        'programa' => 'Projeto Login-Logoff',
         'detalle' => 'Variáveis superglobais e phpinfo()'
     ],
 ];
@@ -80,15 +80,19 @@ $aIdiomaHeader = [
                         switch ($_COOKIE['idioma']) {
                             case "es":
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                $_COOKIE=['idioma']['es'];
                                 break;
                             case "en":
                                 echo"<h5>Welcome " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                $_COOKIE=['idioma']['en'];
                                 break;
                             case "pt":
                                 echo"<h5>Bem-vido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                $_COOKIE=['idioma']['pt'];
                                 break;
                             default:
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
+                                $_COOKIE=['idioma']['es'];
                                 break;
                         }
                         //comprobamos el numero de conexiones si es mayor a 1 tambien mostramos la fecha y hora de la ultima conexion

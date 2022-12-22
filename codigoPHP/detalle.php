@@ -5,7 +5,7 @@ if (isset($_REQUEST['volverPrograma'])) {
     exit;
 }
 //Array para cambiar idioma del header.
-$aIdiomaHeader = [
+$aIdiomaHTML = [
     'es' => [
         'login' => 'Acceso a la aplicación',
         'programa' => 'Proyecto Login-Logoff',
