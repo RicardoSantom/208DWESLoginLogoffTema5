@@ -5,7 +5,7 @@ if (isset($_REQUEST['cancelar'])) {
     exit;
 }
 //Array para cambiar idioma del header.
-$aIdiomaHTML = [
+/*$aIdiomaHTML = [
     'es' => [
         'login' => 'Acceso a la aplicación',
         'programa' => 'Proyecto Login-Logoff',
@@ -21,10 +21,10 @@ $aIdiomaHTML = [
         'programa' => 'Projeto Login-Logoff',
         'detalle' => 'Variáveis superglobais e phpinfo()'
     ],
-];
+];*/
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $_COOKIE['idiomaPreferido'] ?>">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

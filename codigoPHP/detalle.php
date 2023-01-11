@@ -24,7 +24,7 @@ $aIdiomaHTML = [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $_COOKIE['idioma'] ?>">
+<html lang="<?php echo $_COOKIE['idioma'] ?? 'es' ?>">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -109,7 +109,7 @@ $aIdiomaHTML = [
                     } else {
                         foreach ($aVariableSuperglobal as $nombreSuperglobal => $valorSuperglobal) {
                             if ($nombreSuperglobal == '_SESSION') {
-                                echo "<h3>La variable $_SESSION esta vacía.</h3>";
+                                
                             } else {
                                 if ($nombreSuperglobal == '_SERVER') {
                                     print("<tr>");

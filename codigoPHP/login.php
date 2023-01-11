@@ -4,7 +4,6 @@ if (isset($_REQUEST['registro'])) {
     header('Location: registro.php');
     exit;
 }
-
 /**
  * @author David Aparicio Sir davidas02 en GitHub <https://github.com/davidas02>, Ricardo Santiago Tomé RicardoSantom en GitHub<https://github.com/RicardoSantom>
  * @version 1.0
@@ -26,9 +25,9 @@ $aErrores = [
     'usuario' => null,
     'password' => null
 ];
-$idioma;
 //Array para cambiar idioma del header.
 $aIdiomaHTML = [
+    'null',
     'es' => [
         'login' => 'Acceso a la aplicación',
         'programa' => 'Proyecto Login-Logoff',
@@ -45,17 +44,18 @@ $aIdiomaHTML = [
         'detalle' => 'Variáveis superglobais e phpinfo()'
     ],
 ];
-$sQuerySeleccion = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario=:codUsuario";
-$sQueryActualizacion = <<< query
-  UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
-      T01_FechaHoraUltimaConexion= unix_timestamp()
-  WHERE T01_CodUsuario=:codUsuario;
-  query;
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['iniciarSesion'])) {
         //Crear un objeto PDO pasándole las constantes definidas como parametros.
         $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+        
+        $sQuerySeleccion = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario=:codUsuario";
+        $sQueryActualizacion = <<< query
+        UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
+        T01_FechaHoraUltimaConexion= unix_timestamp()
+        WHERE T01_CodUsuario=:codUsuario;
+        query;
         $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], MAX_TAMANYO, MIN_TAMANYO, OBLIGATORIO);
         $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], MAX_TAMANYO, MIN_TAMANYO, OBLIGATORIO);
         foreach ($aErrores as $claveError => $mensajeError) {
@@ -94,12 +94,13 @@ if ($entradaOK) {
     /* Al tener la base de datos el campo FechaHoraUltimaConexion como timestamp, tengo que comprobar que,
      * si no es nulo, construya un objeto datetime con la fecha actual,y... */
     if (!is_null($oUsuario->T01_FechaHoraUltimaConexion)) {
-        $oFechaTimesTamp = new DateTime();
+        //$oFecha = DateTime::createFromFormat('Y-m-d H:i:s', ($oUsuario->T01_FechaHoraUltimaConexion));
+        $oFecha = new DateTime();
         /* ... le establezco la fecha con el valor devuelto al objeto $oUsuario al ejecutar la consulta por codigo
-         * y hacer fetchObject sobre el.          */
-        $oFechaTimesTamp->setTimestamp($oUsuario->T01_FechaHoraUltimaConexion);
-        //Y se guarda en el $_SESSION el valor de la fecha de su última conexió ya formateado
-        $_SESSION['FechaHoraUltimaConexionAnterior'] = $oFechaTimesTamp->format('d/m/Y H:i:s T');
+         * y hacer fetchObject sobre el. */
+        $oFecha->setTimestamp($oUsuario->T01_FechaHoraUltimaConexion);
+        //Y se guarda en el $_SESSION el valor de la fecha de su última conexión ya formateado
+        $_SESSION['FechaHoraUltimaConexionAnterior'] = $oFecha->format('d/m/Y H:i:s T');
     }
     // Si no ha habido conexiones anteriores, pone la fecha de última conexión a null.
     else {
@@ -131,7 +132,9 @@ if ($entradaOK) {
     //Este timestamp se lo paso como tercer parámetro a la cookie para indicarle su periodo de validez.
     //Los otros dos parámetros son el mombre de la cookie y el campo del formulario del que toma valor,
     //que será el idioma en que recibirá el mensaje de bienvenida en la siguiente página programa.php.
-    setcookie('idioma', $_REQUEST['idioma'], $enteroFechaDentroDeUnaHora);
+    if (isset($_COOKIE['cookieIdioma'])) {
+        setcookie('cookieIdioma', $_REQUEST['idioma'], $enteroFechaDentroDeUnaHora);
+    }
     //Seguimos dentro del supuesto en que la entrada ha sido válida, por lo tanto, redirigimos al usuario a programa.php
     header('Location: programa.php');
     //Finalizamos la ejecución del script por seguridad.
@@ -140,7 +143,7 @@ if ($entradaOK) {
     //Si la entrada no ha sido correcta, imprimo por pantalla el formulario.
     ?>
     <!DOCTYPE html>
-    <html lang="<?php echo $_COOKIE['idioma'] ?>">
+    <html lang="<?php echo $_COOKIE['cookieIdioma'] ?? 'es' ?>">
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -157,7 +160,7 @@ if ($entradaOK) {
         <body>
             <header>
                 <h1>Aplicación LoginLogoffTema5</h1>
-                <h2><?php echo $aIdiomaHTML[$_COOKIE['idioma']]['login'] ?></h2>
+                <h2></h2>
             </header>
             <main>
                 <article>
@@ -168,8 +171,12 @@ if ($entradaOK) {
                             <input type="text" name="usuario" class="entradadatos"/>
                             <label for="password">Password:</label>
                             <input type="password" name="password" class="entradadatos" />
-                            <p>Elija idioma:</p>
-                            <select name="idioma" class="idioma">
+                            <select name="listaDesplegable" value="<?php
+                            if (isset($_REQUEST['listaDesplegable'])) {
+                                echo $_REQUEST['listaDesplegable'];
+                            }
+                            ?>">
+                                <option value="null">Elija una opcion :</option>
                                 <option value="es">Español</option>
                                 <option value="pt">Portugués</option>
                                 <option value="en">Inglés</option>

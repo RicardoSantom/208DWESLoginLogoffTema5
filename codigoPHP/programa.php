@@ -30,7 +30,7 @@ if (isset($_REQUEST['detalle'])) {
     exit;
 }
 //Array para cambiar idioma del header.
-$aIdiomaHTML = [
+/*$aIdiomaHTML = [
     'es' => [
         'login' => 'Acceso a la aplicación',
         'programa' => 'Proyecto Login-Logoff',
@@ -46,10 +46,10 @@ $aIdiomaHTML = [
         'programa' => 'Projeto Login-Logoff',
         'detalle' => 'Variáveis superglobais e phpinfo()'
     ],
-];
+];*/
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $_COOKIE['idiomaPreferido'] ?>">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,24 +77,24 @@ $aIdiomaHTML = [
                 <form name="ejercicio" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <?php
                         //Damos la bienvenida al usuario haciendo uso de la cookie y el valor en ella recojido para idioma
-                        switch ($_COOKIE['idioma']) {
+                        /*switch ($_COOKIE['cookieIdioma']) {
                             case "es":
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
-                                $_COOKIE=['idioma']['es'];
+                                $_COOKIE=['cookieIdioma']['es'];
                                 break;
                             case "en":
                                 echo"<h5>Welcome " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
-                                $_COOKIE=['idioma']['en'];
+                                $_COOKIE=['cookieIdioma']['en'];
                                 break;
                             case "pt":
                                 echo"<h5>Bem-vido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
-                                $_COOKIE=['idioma']['pt'];
+                                $_COOKIE=['cookieIdioma']['pt'];
                                 break;
                             default:
                                 echo"<h5>Bienvenido " . $_SESSION['usuario208DWESLoginLogoffTema5']->T01_DescUsuario."</h5>";
-                                $_COOKIE=['idioma']['es'];
+                                $_COOKIE=['cookieIdioma']['es'];
                                 break;
-                        }
+                        }*/
                         //comprobamos el numero de conexiones si es mayor a 1 tambien mostramos la fecha y hora de la ultima conexion
                         if ($_SESSION['usuario208DWESLoginLogoffTema5']->T01_NumConexiones > 1) {
                             echo"<p>Ultimo inicio de sesión: " . $_SESSION['FechaHoraUltimaConexionAnterior'] . "</p>";
