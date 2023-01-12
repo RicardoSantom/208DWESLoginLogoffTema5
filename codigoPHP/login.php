@@ -171,16 +171,16 @@ if ($entradaOK) {
                             <input type="text" name="usuario" class="entradadatos"/>
                             <label for="password">Password:</label>
                             <input type="password" name="password" class="entradadatos" />
-                            <select name="listaDesplegable" value="<?php
-                            if (isset($_REQUEST['listaDesplegable'])) {
+                            <!--<select name="listaDesplegable" value="<?php
+                            /*if (isset($_REQUEST['listaDesplegable'])) {
                                 echo $_REQUEST['listaDesplegable'];
-                            }
-                            ?>">
+                            }*/
+                            ?>"
                                 <option value="null">Elija una opcion :</option>
                                 <option value="es">Español</option>
                                 <option value="pt">Portugués</option>
                                 <option value="en">Inglés</option>
-                            </select>
+                            </select>>-->
                             <div class="inicarSesion"><input type="submit" id="iniciarSesion" value="Iniciar Sesion" name="iniciarSesion"></div>
                             <div class="inicarSesion"><input type="submit" id="navegarRegistro" value="Registrarse" name="registrarse"></div>
                         </fieldset>

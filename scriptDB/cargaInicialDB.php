@@ -33,24 +33,21 @@
                     //Establecimiento de la conexión 
                     $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
                     $insercion = $DB208DWESLoginLogoffTema5->prepare(<<<SQL
-                    insert into T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_FechaHoraUltimaConexion) values
-                    ('heraclio',sha2(concat('heraclio','paso'),256),'Heraclio', UNIX_TIMESTAMP()),
-                    ('alberto',sha2(concat('alberto','paso'),256),'Alberto', UNIX_TIMESTAMP()),
-                    ('amor',sha2(concat('amor','paso'),256),'Amor', UNIX_TIMESTAMP()),
-                    ('antonio',sha2(concat('antonio','paso'),256),'Antonio', UNIX_TIMESTAMP()),
-                    ('carmen',sha2(concat('carmen','paso'),256),'Carmen', UNIX_TIMESTAMP()),
-                    ('ricardo',sha2(concat('ricardo','paso'),256),'Ricardo', UNIX_TIMESTAMP()),
-                    ('david',sha2(concat('david','paso'),256),'David', UNIX_TIMESTAMP()),
-                    ('luis',sha2(concat('luis','paso'),256),'Luis', UNIX_TIMESTAMP()),
-                    ('otalvaro',sha2(concat('otalvaro','paso'),256),'Alejandro', UNIX_TIMESTAMP()),
-                    ('josue',sha2(concat('josue','paso'),256),'Josue', UNIX_TIMESTAMP()),
-                    ('manuel',sha2(concat('manuel','paso'),256),'Manuel', UNIX_TIMESTAMP()),
-                    ('admin',sha2(concat('admin','paso'),256),'Administrador', UNIX_TIMESTAMP());
+                    insert into T02_DepartamentoTema5 (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio) 
+                    values("DAW","Despliegue Aplcaciones Web",UNIX_TIMESTAMP(),2000);
+                    insert into T02_DepartamentoTema5  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio) 
+                    values("DWC","Desarrollo Web Entorno Cliente",UNIX_TIMESTAMP(),1000);
+                    insert into T02_DepartamentoTema5  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
+                    values("DWS","Desarrollo Web Entorno Servidor",UNIX_TIMESTAMP(),3000);
+                    insert into T02_DepartamentoTema5  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
+                    values("DIW","Diseño Interfaces Web",UNIX_TIMESTAMP(),4000);
+                    insert into T02_DepartamentoTema5  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
+                    values("EIE","Empresa e Iniciativa Emprendedora",UNIX_TIMESTAMP(),2);
                 SQL);
                     $insercion->execute(); //Ejecuto la consulta
                     if ($insercion) {
                         echo "<h3>Insercion ejecutada con exito</<h3>";
-                        $resultadoDepartamentos = $DB208DWESLoginLogoffTema5->query("select * from T02_Departamento");
+                        //$resultadoDepartamentos = $DB208DWESLoginLogoff->query("select * from T02_Departamento");
                     }
                 } catch (PDOException $excepcion) { //Código que se ejecutará si se produce alguna excepción
                     //Almacenamos el código del error de la excepción en la variable $errorExcepcion
@@ -64,8 +61,44 @@
                     // Cierre de la conexión.
                     unset($DB208DWESLoginLogoffTema5);
                 }
+                try {
+                    //Establecimiento de la conexión 
+                    $DB208DWESLoginLogoffTema5_2 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
+                    $insercion2 = $DB208DWESLoginLogoffTema5_2->prepare(<<<SQL
+                    insert into T01_UsuarioTema5(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_FechaHoraUltimaConexion) values
+                    ('heraclio',sha2(concat('heraclio','paso'),256),'Heraclio', UNIX_TIMESTAMP()),
+                    ('alberto',sha2(concat('alberto','paso'),256),'Alberto', UNIX_TIMESTAMP()),
+                    ('amor',sha2(concat('amor','paso'),256),'Amor', UNIX_TIMESTAMP()),
+                    ('antonio',sha2(concat('antonio','paso'),256),'Antonio', UNIX_TIMESTAMP()),
+                    ('carmen',sha2(concat('carmen','paso'),256),'Carmen', UNIX_TIMESTAMP()),
+                    ('ricardo',sha2(concat('ricardo','paso'),256),'Ricardo', UNIX_TIMESTAMP()),
+                    ('david',sha2(concat('david','paso'),256),'David', UNIX_TIMESTAMP()),
+                    ('luis',sha2(concat('luis','paso'),256),'Luis', UNIX_TIMESTAMP()),
+                    ('otalvaro',sha2(concat('otalvaro','paso'),256),'Alejandro', UNIX_TIMESTAMP()),
+                    ('josue',sha2(concat('josue','paso'),256),'Josue', UNIX_TIMESTAMP()),
+                    ('manuel',sha2(concat('manuel','paso'),256),'Manuel', UNIX_TIMESTAMP()),;
+                            insert into T01_UsuarioTema5(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_FechaHoraUltimaConexion,T01_Perfil) values
+                    ('admin',sha2(concat('admin','paso'),256),'Administrador', UNIX_TIMESTAMP(),'administrador');
+                SQL);
+                    $insercion2->execute(); //Ejecuto la consulta
+                    if ($insercion2) {
+                        echo "<h3>Insercion ejecutada con exito</<h3>";
+                        //$resultadoDepartamentos = $DB208DWESLoginLogoffTema5->query("select * from T02_DepartamentoTema5");
+                    }
+                } catch (PDOException $excepcion) { //Código que se ejecutará si se produce alguna excepción
+                    //Almacenamos el código del error de la excepción en la variable $errorExcepcion
+                    $errorExcep = $excepcion->getCode();
+                    //Almacenamos el mensaje de la excepción en la variable $mensajeExcep
+                    $mensajeExcep = $excepcion->getMessage();
+
+                    echo "<span style='color: red;'>Error: </span>" . $mensajeExcep . "<br>"; //Mostramos el mensaje de la excepción
+                    echo "<span style='color: red;'>Código del error: </span>" . $errorExcep; //Mostramos el código de la excepción
+                } finally {
+                    // Cierre de la conexión.
+                    unset($DB208DWESLoginLogoffTema5_2);
+                }
                 ?>
-                <a href="../indexProyectoTema4.php"><img src="../webroot/volver.png" alt="volver" class="volver2" /></a>
+                <a href="../indexLoginLogoffTema5.php">VOLVER</a>
             </article>
         </main>
         <footer>

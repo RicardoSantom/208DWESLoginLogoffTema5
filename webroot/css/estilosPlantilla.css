@@ -158,7 +158,13 @@ td a:hover{
 #detalle,#iniciarSesion{
     background-color:lightgreen;
     position: absolute;
-    left: 10%;
+    height: 3rem;
+    width: 6rem;
+}
+#navegarRegistro{
+    background-color:#00ccff;
+    position: absolute;
+    left: 80%;
     height: 3rem;
     width: 6rem;
 }
@@ -176,8 +182,9 @@ fieldset *{
 }
 .inicarSesion{
     position: absolute;
-    left: 47%;
+    left: 40%;
     top: 75%;
+    width: 15rem;
 }
 #salir{
     background-color:red;

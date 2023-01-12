@@ -61,7 +61,6 @@ $aIdiomaHTML = [
                  * @version 1.0
                  * @since 28/10/2022
                  */
-
                 /**
                  * Esta función recibe dos parámetros, con ellos construye una tabla, evalua si el primer parámetro recibido
                  * es null o está vacío; en caso de que así sea, devuelve un mensaje impreso por pantalla declarando que
@@ -79,6 +78,9 @@ $aIdiomaHTML = [
                  * de escape \ y a continuación el identificador de la variable supeglobal y para finalizar, cerramos con comillas.
                  */
                 if (!empty($_SESSION)) {
+                    $oFecha = new DateTime();
+                    $oFecha->setTimestamp($_SESSION['usuario208DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion);
+                    $fechaFormateada = $oFecha->format('U = d-m-Y H:i:s');
                     echo "<table><caption>\$_SESSION'</caption><tr><th>Clave</th><th>Valor</th></tr>";
                     foreach ($_SESSION as $clave => $valor) {
                         echo "<tr>";
@@ -86,8 +88,13 @@ $aIdiomaHTML = [
                         if (is_object($valor)) {
                             echo '<td><table><th>Clave</th><th>valor</th>';
                             foreach ($valor as $c => $v) {
-                                echo "<tr><th>$c</th>";
-                                echo "<td>$v</td></tr>";
+                                if ($c == 'T01_FechaHoraUltimaConexion') {
+                                    echo "<tr><th>$c</th>";
+                                    echo "<td>$fechaFormateada</td></tr>";
+                                } else {
+                                    echo "<tr><th>$c</th>";
+                                    echo "<td>$v</td></tr>";
+                                }
                             }
                             echo"</table></td>";
                         } else {
@@ -101,6 +108,7 @@ $aIdiomaHTML = [
                 } else {
                     printf('<h3>La variable superglobal $_SESSION está vacía</h3>');
                 }
+
                 function imprimirTablaVariablesSuperGlobales($aVariableSuperglobal, $sNombreVariableSuperGlobal) {
 
                     printf('<table class="tablaGlobales"><caption>%s</caption>', $sNombreVariableSuperGlobal);
@@ -143,7 +151,6 @@ $aIdiomaHTML = [
                     }
                 }
 
-                
                 imprimirTablaVariablesSuperGlobales($_COOKIE, "\$_COOKIE");
                 imprimirTablaVariablesSuperGlobales($_SERVER, "\$_SERVER");
                 imprimirTablaVariablesSuperGlobales($_REQUEST, "\$_REQUEST");

@@ -1,15 +1,15 @@
 use DB208DWESLoginLogoffTema5;
 -- Inserción de datos en la tabla Departamento.
 insert into T02_Departamento (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio) 
-values("DAW","Despliegue Aplcaciones Web",1668384061,2000);
+values("DAW","Despliegue Aplcaciones Web",UNIX_TIMESTAMP(),2000);
 insert into T02_Departamento  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio) 
-values("DWC","Desarrollo Web Entorno Cliente",1668384061,1000);
+values("DWC","Desarrollo Web Entorno Cliente",UNIX_TIMESTAMP(),1000);
 insert into T02_Departamento  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
- values("DWS","Desarrollo Web Entorno Servidor",1668384061,3000);
+ values("DWS","Desarrollo Web Entorno Servidor",UNIX_TIMESTAMP(),3000);
 insert into T02_Departamento  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
- values("DIW","Diseño Interfaces Web",1668384061,4000);
+ values("DIW","Diseño Interfaces Web",UNIX_TIMESTAMP(),4000);
 insert into T02_Departamento  (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenNegocio)
- values("EIE","Empresa e Iniciativa Emprendedora",1668384061,2);
+ values("EIE","Empresa e Iniciativa Emprendedora",UNIX_TIMESTAMP(),2);
 -- Inserción de datos en la tabla Usuario.
 insert into T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_FechaHoraUltimaConexion) values
 ('heraclio',sha2(concat('heraclio','paso'),256),'Heraclio', UNIX_TIMESTAMP()),
