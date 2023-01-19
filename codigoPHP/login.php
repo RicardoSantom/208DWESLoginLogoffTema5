@@ -49,7 +49,7 @@ try {
     if (isset($_REQUEST['iniciarSesion'])) {
         //Crear un objeto PDO pasándole las constantes definidas como parametros.
         $DB208DWESLoginLogoffTema5 = new PDO(DSN, NOMBREUSUARIO, PASSWORD);
-        
+
         $sQuerySeleccion = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario=:codUsuario";
         $sQueryActualizacion = <<< query
         UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
@@ -125,8 +125,8 @@ if ($entradaOK) {
     }
     //Fecha actual
     $oFechaActual = new DateTime('now');
-    //A la que le añado 6 minutos
-    $oFechaDentroDeUnaHora = $oFechaActual->add(new DateInterval("PT6M"));
+    //A la que le añado 60 minutos
+    $oFechaDentroDeUnaHora = $oFechaActual->add(new DateInterval("PT60M"));
     //Y de esta última obtengo el timestamp
     $enteroFechaDentroDeUnaHora = $oFechaDentroDeUnaHora->getTimestamp();
     //Este timestamp se lo paso como tercer parámetro a la cookie para indicarle su periodo de validez.
@@ -171,18 +171,18 @@ if ($entradaOK) {
                             <input type="text" name="usuario" class="entradadatos"/>
                             <label for="password">Password:</label>
                             <input type="password" name="password" class="entradadatos" />
-                            <!--<select name="listaDesplegable" value="<?php
-                            /*if (isset($_REQUEST['listaDesplegable'])) {
+                            <select name="listaDesplegable" value="<?php
+                            if (isset($_REQUEST['listaDesplegable'])) {
                                 echo $_REQUEST['listaDesplegable'];
-                            }*/
+                            } 
                             ?>"
-                                <option value="null">Elija una opcion :</option>
+                                    <option value="null">Elija una opcion :</option>
                                 <option value="es">Español</option>
                                 <option value="pt">Portugués</option>
                                 <option value="en">Inglés</option>
-                            </select>>-->
-                            <div class="inicarSesion"><input type="submit" id="iniciarSesion" value="Iniciar Sesion" name="iniciarSesion"></div>
-                            <div class="inicarSesion"><input type="submit" id="navegarRegistro" value="Registrarse" name="registrarse"></div>
+                            </select>
+                            <div class="inicarSesionLogin"><input type="submit" id="login" value="Login" name="login"></div>
+                            <div class="inicarSesionLogin"><input type="submit" id="volver" value="Volver" name="volver"></div>
                         </fieldset>
                     </form>
                 </article>

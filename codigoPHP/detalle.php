@@ -60,23 +60,7 @@ $aIdiomaHTML = [
                  * @author Ricardo Santiago Tomé - RicardoSantom en Github https://github.com/RicardoSantom
                  * @version 1.0
                  * @since 28/10/2022
-                 */
-                /**
-                 * Esta función recibe dos parámetros, con ellos construye una tabla, evalua si el primer parámetro recibido
-                 * es null o está vacío; en caso de que así sea, devuelve un mensaje impreso por pantalla declarando que
-                 * no hay nada que mostrar de esta variable superglobal, si no, construye una fila por cada pareja de variable - valor 
-                 * imprimiendo el valor de cada una de ellas en una celda diferente.
-                 *  Esta impresión la realiza con print_r pasándole como primer parámetro en una ocasión el nombre de la variable 
-                 * y en otra el valor de esta, y como segundo parámetro un valor booleano que si está establecido a true no mostrará
-                 * el primer parámetro, por contra, si está establecido a false si lo mostrará.
-                 * @author Ricardo Santiago Tomé - RicardoSantom en Github https://github.com/RicardoSantom
-                 * @version 1.0
-                 * @since 05/11/2022
-                 * @param array $aVariableSuperglobal array que contiene datos de la variable superglobal. Como parámetro la pasamos con el 
-                 *  identificador de dicha variable superglobal.
-                 * @param string $sNombreVariableSuperGlobal nombre de la variable superglobal abriendo comillas seguidas por la secuencia
-                 * de escape \ y a continuación el identificador de la variable supeglobal y para finalizar, cerramos con comillas.
-                 */
+                 */               
                 if (!empty($_SESSION)) {
                     $oFecha = new DateTime();
                     $oFecha->setTimestamp($_SESSION['usuario208DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion);
@@ -108,7 +92,23 @@ $aIdiomaHTML = [
                 } else {
                     printf('<h3>La variable superglobal $_SESSION está vacía</h3>');
                 }
-
+                
+                 /**
+                 * Esta función recibe dos parámetros, con ellos construye una tabla, evalua si el primer parámetro recibido
+                 * es null o está vacío; en caso de que así sea, devuelve un mensaje impreso por pantalla declarando que
+                 * no hay nada que mostrar de esta variable superglobal, si no, construye una fila por cada pareja de variable - valor 
+                 * imprimiendo el valor de cada una de ellas en una celda diferente.
+                 *  Esta impresión la realiza con print_r pasándole como primer parámetro en una ocasión el nombre de la variable 
+                 * y en otra el valor de esta, y como segundo parámetro un valor booleano que si está establecido a true no mostrará
+                 * el primer parámetro, por contra, si está establecido a false si lo mostrará.
+                 * @author Ricardo Santiago Tomé - RicardoSantom en Github https://github.com/RicardoSantom
+                 * @version 1.0
+                 * @since 05/11/2022
+                 * @param array $aVariableSuperglobal array que contiene datos de la variable superglobal. Como parámetro la pasamos con el 
+                 *  identificador de dicha variable superglobal.
+                 * @param string $sNombreVariableSuperGlobal nombre de la variable superglobal abriendo comillas seguidas por la secuencia
+                 * de escape \ y a continuación el identificador de la variable supeglobal y para finalizar, cerramos con comillas.
+                 */
                 function imprimirTablaVariablesSuperGlobales($aVariableSuperglobal, $sNombreVariableSuperGlobal) {
 
                     printf('<table class="tablaGlobales"><caption>%s</caption>', $sNombreVariableSuperGlobal);
